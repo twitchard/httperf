@@ -976,12 +976,16 @@ core_send(Conn * conn, Call * call)
 	call->conn = conn;	/* NO refcounting here (see call.h).  */
 
 	if (param.no_host_hdr) {
+                call->req.iov[IE_NEWLINE1].iov_base = (caddr_t) "";
+                call->req.iov[IE_NEWLINE1].iov_len = 0;
 		call->req.iov[IE_HOST].iov_base = (caddr_t) "";
 		call->req.iov[IE_HOST].iov_len = 0;
 	} else if (!call->req.iov[IE_HOST].iov_base) {
 		/*
 		 * Default call's hostname to connection's hostname: 
 		 */
+                call->req.iov[IE_NEWLINE1].iov_base = (caddr_t) "\r\n";
+                call->req.iov[IE_NEWLINE1].iov_len = 2;
 		call->req.iov[IE_HOST].iov_base = (caddr_t) conn->fqdname;
 		call->req.iov[IE_HOST].iov_len = conn->fqdname_len;
 	}

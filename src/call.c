@@ -52,8 +52,6 @@ call_init (Call *c)
   c->req.version = param.http_version;
   c->req.iov[IE_BLANK].iov_base = (caddr_t) " ";
   c->req.iov[IE_BLANK].iov_len = 1;
-  c->req.iov[IE_NEWLINE1].iov_base = (caddr_t) "\r\n";
-  c->req.iov[IE_NEWLINE1].iov_len = 2;
   c->req.iov[IE_NEWLINE2].iov_base = (caddr_t) "\r\n";
   c->req.iov[IE_NEWLINE2].iov_len = 2;
 }
