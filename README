@@ -2,12 +2,16 @@
 
 * Fork notes
 
-This is exactly httperf from the origional source, with the excetion 
-that it prints "Connection lifetime =" for each connection made when 
+This is exactly httperf from the origional source, with two exceptions:
+	
+	
+1. (Added by jmervine) it prints "Connection lifetime =" for each connection made when 
 in verbose mode. I have made this change for two reasons. First, I've 
 used a version of httperf that had this modification and found it very 
 useful. Second, see http://mervine.net/gems/httperfrb, which uses 
 this output.
+2. (Added by twitchard)
+When passing in the --no-host-hdr parameter, it does not include a newline before the headers added by --add-header. (Without this change, it is impossible to submit valid http requests without a Host header (or with an altered one), because the new line will cause the http request to be terminated early)
 
 * Building httperf
 
